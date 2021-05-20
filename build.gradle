@@ -1,0 +1,78 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'application'
+apply plugin: "com.commercehub.gradle.plugin.avro"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "https://plugins.gradle.org/m2/" }
+    maven { url "https://packages.confluent.io/maven/" }
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url "https://packages.confluent.io/maven/" }
+    }
+    dependencies {
+        classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.14.2"
+        classpath "com.github.ben-manes:gradle-versions-plugin:+"
+        classpath "org.owasp:dependency-check-gradle:+"
+    }
+}
+
+group = 'com.demo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 11
+targetCompatibility = 11
+
+dependencies {
+    implementation "org.apache.kafka:kafka-clients:${kafkaVersion}"
+    implementation "org.apache.kafka:kafka-streams:${kafkaVersion}"
+    implementation "io.confluent:kafka-avro-serializer:${confluentKafkaVersion}"
+    implementation "io.confluent:kafka-streams-avro-serde:${confluentKafkaVersion}"
+    implementation "net.logstash.logback:logstash-logback-encoder:${logstashLogbackEncoderVersion}"
+    implementation "org.yaml:snakeyaml:${snakeyamlVersion}"
+    implementation "com.googlecode.json-simple:json-simple:${jsonSimple}"
+    implementation "org.apache.avro:avro:${avro}"
+    implementation "com.google.code.gson:gson:${gson}"
+    implementation "org.apache.logging.log4j:log4j-core:${log4jCore}"
+    implementation "ch.qos.logback:logback-classic:${logbackclassic}"
+}
+
+tasks.withType(JavaExec) {
+    // Assign all Java system properties from
+    // the command line to the JavaExec task.
+    systemProperties System.properties
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'com.demo.producer.Application'
+        )
+    }
+}
+
+application {
+    mainClassName = "Main-Class': 'com.demo.producer.Application"
+}
+
+avro {
+    validateDefaults = true
+    createSetters = true
+    fieldVisibility = "PRIVATE"
+    outputCharacterEncoding = "UTF-8"
+    stringType = "CharSequence"
+}
+
+task generateAvro(type: com.commercehub.gradle.plugin.avro.GenerateAvroJavaTask) {
+    source("src/main/resources/avro")
+    outputDir = file("src/main/java/")
+}
+
+compileJava.source(generateAvro.outputs)

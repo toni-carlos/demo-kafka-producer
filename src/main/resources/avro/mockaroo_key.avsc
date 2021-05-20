@@ -1,0 +1,11 @@
+{
+  "name": "MockarooKey",
+  "type": "record",
+  "namespace": "com.demo.producer.avro",
+  "fields": [
+    {
+      "name": "id",
+      "type": "int"
+    }
+  ]
+}
