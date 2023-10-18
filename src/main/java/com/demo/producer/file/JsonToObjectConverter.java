@@ -2,6 +2,7 @@ package com.demo.producer.file;
 
 import com.demo.producer.model.Event;
 import com.google.gson.Gson;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -12,7 +13,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class JsonToObjectConverter implements FileToObjectConverter{
+@Component
+public class JsonToObjectConverter implements FileToObjectConverter {
 
     public List<Event> converter(String path) {
 

@@ -5,7 +5,9 @@ import com.demo.producer.avro.MockarooValue;
 import com.demo.producer.model.Event;
 import org.apache.avro.generic.GenericRecord;
 import org.apache.kafka.streams.KeyValue;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SchemaEnrich {
 
     public KeyValue<GenericRecord, GenericRecord> enrich(Event event) {

@@ -6,20 +6,27 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.streams.KeyValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.util.Properties;
 
 
+@Component
 public class ProducerMessage {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ProducerMessage.class);
     private KafkaProducer producer;
-    private String outputTopic;
     private int count = 0;
 
-    public ProducerMessage(Properties properties, String outputTopic) {
-        this.producer = new KafkaProducer<String, GenericRecord>(properties);
-        this.outputTopic = outputTopic;
+    @Value("${outputTopic}")
+    private String outputTopic;
+
+    private final Properties config;
+
+    public ProducerMessage(Properties config) {
+        this.config = config;
+        this.producer = new KafkaProducer<String, GenericRecord>(this.config);
     }
 
     @SuppressWarnings("unchecked")

@@ -4,9 +4,11 @@ apply plugin: 'idea'
 apply plugin: 'application'
 apply plugin: "com.commercehub.gradle.plugin.avro"
 
+
 repositories {
     mavenLocal()
     mavenCentral()
+    google()
     maven { url "https://plugins.gradle.org/m2/" }
     maven { url "https://packages.confluent.io/maven/" }
 }
@@ -15,14 +17,18 @@ buildscript {
     repositories {
         mavenLocal()
         mavenCentral()
+        google()
         maven { url "https://plugins.gradle.org/m2/" }
         maven { url "https://packages.confluent.io/maven/" }
     }
+
     dependencies {
         classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.14.2"
         classpath "com.github.ben-manes:gradle-versions-plugin:+"
-        classpath "org.owasp:dependency-check-gradle:+"
+        classpath "org.owasp:dependency-check-gradle:${gradleVersion}"
+        classpath "org.owasp:dependency-check-gradle:${gradleVersion}"
     }
+
 }
 
 group = 'com.demo'
@@ -31,6 +37,9 @@ sourceCompatibility = 11
 targetCompatibility = 11
 
 dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-test:${springBoot}"
+    implementation "org.springframework.boot:spring-boot-starter-web:${springBoot}"
+    implementation "org.projectlombok:lombok:${lombok}"
     implementation "org.apache.kafka:kafka-clients:${kafkaVersion}"
     implementation "org.apache.kafka:kafka-streams:${kafkaVersion}"
     implementation "io.confluent:kafka-avro-serializer:${confluentKafkaVersion}"
@@ -42,6 +51,12 @@ dependencies {
     implementation "com.google.code.gson:gson:${gson}"
     implementation "org.apache.logging.log4j:log4j-core:${log4jCore}"
     implementation "ch.qos.logback:logback-classic:${logbackclassic}"
+
+    compileOnly "org.projectlombok:lombok:${lombok}"
+    annotationProcessor "org.projectlombok:lombok:${lombok}"
+
+    testCompileOnly "org.projectlombok:lombok:${lombok}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombok}"
 }
 
 tasks.withType(JavaExec) {
