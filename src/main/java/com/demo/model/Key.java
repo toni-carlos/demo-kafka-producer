@@ -1,4 +1,4 @@
-package com.demo.producer.model;
+package com.demo.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Setter
 @Getter
-@NoArgsConstructor
 @Component
 public class Key {
-    private int id;
+    private int anonymous_id;
 }

@@ -1,4 +1,4 @@
-package com.demo.producer.model;
+package com.demo.model;
 
 import lombok.Data;
 import lombok.Getter;
@@ -10,10 +10,8 @@ import org.springframework.stereotype.Component;
 @Setter
 @Component
 public class Event {
-    private int id;
-    private String first_name;
-    private String last_name;
-    private String email;
-    private String gender;
-    private String ip_address;
+    private int anonymous_id;
+    private String action;
+    private String event_timestamp;
+    private String event_datetime;
 }

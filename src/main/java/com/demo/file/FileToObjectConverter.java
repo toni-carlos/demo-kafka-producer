@@ -1,6 +1,6 @@
-package com.demo.producer.file;
+package com.demo.file;
 
-import com.demo.producer.model.Event;
+import com.demo.model.Event;
 
 import java.io.BufferedReader;
 import java.util.List;

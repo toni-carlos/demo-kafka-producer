@@ -1,6 +1,6 @@
-package com.demo.producer;
+package com.demo;
 
-import com.demo.producer.streamers.KafkaStreamer;
+import com.demo.streamers.KafkaStreamer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

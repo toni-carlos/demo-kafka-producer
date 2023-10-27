@@ -1,4 +1,4 @@
-package com.demo.producer.kafka;
+package com.demo.kafka;
 
 import org.apache.avro.generic.GenericRecord;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -41,5 +41,9 @@ public class ProducerMessage {
         } catch (Exception e) {
             LOGGER.error("Something went wrong while running kafka writer ... attempt {}", e);
         }
+    }
+
+    public void flush(){
+        this.producer.flush();
     }
 }

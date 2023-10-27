@@ -1,6 +1,6 @@
-package com.demo.producer.file;
+package com.demo.file;
 
-import com.demo.producer.model.Event;
+import com.demo.model.Event;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Component;
 

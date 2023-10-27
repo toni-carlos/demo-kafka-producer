@@ -1,0 +1,11 @@
+{
+  "name": "UserEventsKey",
+  "type": "record",
+  "namespace": "com.demo.avro",
+  "fields": [
+    {
+      "name": "anonymous_id",
+      "type": "int"
+    }
+  ]
+}

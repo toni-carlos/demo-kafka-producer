@@ -38,7 +38,7 @@ targetCompatibility = 11
 
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-test:${springBoot}"
-    implementation "org.springframework.boot:spring-boot-starter-web:${springBoot}"
+    implementation "org.springframework.boot:spring-boot-starter:${springBoot}"
     implementation "org.projectlombok:lombok:${lombok}"
     implementation "org.apache.kafka:kafka-clients:${kafkaVersion}"
     implementation "org.apache.kafka:kafka-streams:${kafkaVersion}"

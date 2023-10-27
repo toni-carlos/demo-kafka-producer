@@ -1,0 +1,26 @@
+{
+  "name": "UserEventsValue",
+  "type": "record",
+  "namespace": "com.demo.avro",
+  "fields": [
+    {
+      "name": "anonymous_id",
+      "type": "int"
+    },
+    {
+      "name": "action",
+      "type": ["null", "string"],
+      "default": null
+    },
+    {
+      "name": "event_timestamp",
+      "type": ["null", "string"],
+      "default": null
+    },
+    {
+      "name": "event_datetime",
+      "type": ["null", "string"],
+      "default": null
+    }
+  ]
+}
